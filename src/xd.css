@@ -1,0 +1,643 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black: #0a0a0a;
+    --off-black: #141414;
+    --dark-grey: #1a1a1a;
+    --mid-grey: #888;
+    --light-grey: #d4d4d4;
+    --white: #f8f8f8;
+    --gold: #c9a961;
+    --gold-dark: #a68847;
+}
+
+body {
+    font-family: 'Archivo', -apple-system, sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll container for parallax */
+.scroll-container {
+    position: relative;
+}
+
+/* SECTION 1 — HERO */
+.hero-section {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* Spacer to allow scroll but keep hero fixed */
+.hero-spacer {
+    height: 200vh;
+    position: relative;
+    z-index: 1;
+
+}
+
+.hero-background {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.founder-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Founder 1 — Left position */
+.founder-1 {
+    position: absolute;
+    left: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+    height: 480px;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    opacity: 1;
+}
+
+.founder-1.fade-out {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8) translateX(-100px);
+}
+
+.founder-1::after {
+    content: 'FOUNDER 01';
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.6;
+}
+
+.founder-1:hover {
+    transform: translateY(-50%) scale(1.05);
+    border-color: var(--gold);
+}
+
+/* Founder 2 — Right position */
+.founder-2 {
+    position: absolute;
+    right: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+    height: 480px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    opacity: 1;
+}
+
+.founder-2.fade-out {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8) translateX(100px);
+}
+
+.founder-2::after {
+    content: 'FOUNDER 02';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.6;
+}
+
+.founder-2:hover {
+    transform: translateY(-50%) scale(1.05);
+    border-color: var(--gold);
+}
+
+.hero-wordmark {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    color: var(--white);
+    opacity: 0.4;
+    z-index: 10;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.5;
+    z-index: 10;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+}
+
+.scroll-text {
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 300;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+/* SECTION 2 — BRAND REVEAL */
+.brand-reveal-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.brand-reveal-content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(80px, 15vw, 220px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    color: var(--white);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Pen writing effect using SVG mask */
+.brand-name-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-name {
+    background: linear-gradient(90deg, var(--white) 0%, var(--white) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brand-name.writing {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    animation: writeText 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes writeText {
+    0% {
+        clip-path: inset(0 100% 0 0);
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+.brand-tagline {
+    font-size: clamp(12px, 1.2vw, 16px);
+    letter-spacing: 8px;
+    font-weight: 200;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease 1.8s, transform 1.5s ease 1.8s;
+}
+
+.brand-tagline.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Decorative grid background for depth */
+.brand-reveal-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+            linear-gradient(rgba(201, 169, 97, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(201, 169, 97, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 1.5s ease;
+}
+
+.brand-reveal-section.active::before {
+    opacity: 0.3;
+}
+
+/* SECTION 2 — MANIFESTO */
+.manifesto-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark-grey);
+    padding: 0 60px;
+    z-index: 10;
+}
+
+.manifesto-content {
+    max-width: 1200px;
+    text-align: center;
+}
+
+.manifesto-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 92px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 40px;
+    font-style: italic;
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.manifesto-quote.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.manifesto-sub {
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--mid-grey);
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s ease 0.3s, transform 1.2s ease 0.3s;
+}
+
+.manifesto-sub.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* SECTION 3 — PORTFOLIO */
+.portfolio-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: var(--black);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.portfolio-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+}
+
+.portfolio-track {
+    display: flex;
+    gap: 30px;
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+.portfolio-item {
+    position: relative;
+    flex-shrink: 0;
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+    background: var(--dark-grey);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.portfolio-item:hover::before {
+    opacity: 1;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.05) translateY(-10px);
+    border-color: rgba(201, 169, 97, 0.3);
+    z-index: 10;
+}
+
+.portfolio-label {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 300;
+    color: var(--white);
+    opacity: 0.7;
+    z-index: 2;
+    text-transform: uppercase;
+}
+
+/* SECTION 4 — ABOUT & SERVICES */
+.about-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: var(--off-black);
+    padding: 120px 60px;
+    z-index: 10;
+}
+
+.about-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+}
+
+.about-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.about-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.about-eyebrow {
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.about-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 68px);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 40px;
+}
+
+.about-description {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--light-grey);
+    font-weight: 300;
+}
+
+.about-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 1.2s ease 0.2s, transform 1.2s ease 0.2s;
+}
+
+.about-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.services-title {
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+.services-list {
+    list-style: none;
+}
+
+.service-item {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--white);
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.service-item:hover {
+    color: var(--gold);
+    padding-left: 20px;
+}
+
+.service-item:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* SECTION 5 — FOOTER */
+.footer-section {
+    position: relative;
+    width: 100%;
+    background: var(--black);
+    padding: 100px 60px 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-cta {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 60px;
+    letter-spacing: -0.02em;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+}
+
+.footer-link {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--mid-grey);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--gold);
+}
+
+.footer-copyright {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--mid-grey);
+    font-weight: 300;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .founder-1, .founder-2 {
+        width: 280px;
+        height: 420px;
+    }
+
+    .founder-1 {
+        left: 10%;
+    }
+
+    .founder-2 {
+        right: 10%;
+    }
+
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 80px;
+    }
+
+    .portfolio-item {
+        width: 500px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-wordmark {
+        left: 30px;
+        top: 30px;
+    }
+
+    .founder-1, .founder-2 {
+        width: 200px;
+        height: 320px;
+    }
+
+    .founder-1 {
+        left: 5%;
+    }
+
+    .founder-2 {
+        right: 5%;
+    }
+
+    .manifesto-section,
+    .about-section,
+    .portfolio-section,
+    .footer-section {
+        padding: 80px 30px;
+    }
+
+    .portfolio-item {
+        width: 400px;
+        height: 300px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}

@@ -3,6 +3,8 @@ import { gsap } from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import Navbar from "./components/Navbar.jsx";
+import Hero from "./components/Hero.jsx";
 
 gsap.registerPlugin(ScrollTrigger,SplitText);
 
@@ -10,10 +12,11 @@ gsap.registerPlugin(ScrollTrigger,SplitText);
 
 const App = () => {
     return (
-        <div className="flex-center h-screen">
-            <h1 className="text-3xl text-violet-600"> Helolo </h1>
-
-        </div>
+        <main>
+            <Navbar/>
+            <Hero/>
+            <div className='h-dvh bg-black'/>
+        </main>
     )
 }
 export default App
